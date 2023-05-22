@@ -1,0 +1,382 @@
+body {
+    font-family: sans-serif;
+}
+
+main {
+    max-width: 1400px;
+    margin: 0 auto;
+}
+
+.layout {
+    padding: 20px;
+}
+
+#hero {
+    /*display: grid;*/
+    /*grid-template-columns: repeat(2, 1fr);*/
+    /*grid-area: top-area;*/
+    /*height: 400px;*/
+}
+
+.image-layout-container {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 5px;
+    margin-bottom: 10px;
+    grid-template-areas:
+    'main-container other-image-container info'
+    'main-container other-image-container .';
+}
+
+.slideshow-container {
+    grid-area: main-container;
+}
+
+
+.image-layout-container .img-container {
+    grid-area: other-image-container;
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 5px;
+    grid-template-areas:
+    'main img0'
+    'img1 img2';
+}
+
+.img-container .img-item img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    cursor: pointer;
+}
+
+/*#hero .hero__main_image-wrapper {*/
+/*    height: 400px;*/
+/*}*/
+
+/*#hero .hero__main_image-wrapper img {*/
+/*    width: 100%;*/
+/*    height: 100%;*/
+/*    object-position: center center;*/
+/*    object-fit: cover;*/
+/*}*/
+
+/*#hero .hero__information {*/
+/*    display: flex;*/
+/*    flex-direction: column;*/
+/*    justify-content: space-between;*/
+/*    padding-left: 20px;*/
+/*    gap: 15px;*/
+/*}*/
+
+.information-wrapper {
+    display: flex;
+    gap: 40px;
+    justify-content: space-evenly;
+    grid-area: info;
+}
+
+#hero .left-side-information p,
+#hero .right-side-information p {
+    padding-left: 15px;
+    font-weight: 400;
+    font-size: 18px;
+}
+
+#hero .left-side-information h4,
+#hero .right-side-information h4 {
+    margin-bottom: 3px;
+    font-weight: 200;
+}
+
+#hero .left-side-information div,
+#hero .right-side-information div {
+    margin-bottom: 10px;
+}
+
+#hero .hero__information h3 {
+    font-size: 28px;
+    font-weight: 400;
+    text-align: center;
+}
+
+#hero .images-container {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 15px;
+}
+
+#hero .other__images-wrapper {
+    height: 200px;
+}
+
+#hero .other__images-wrapper img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+#information {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+}
+
+#information .characteristics {
+    padding-top: 20px;
+}
+
+#information .characteristics h3 {
+    text-align: center;
+    font-size: 28px;
+    font-weight: 400;
+    margin-bottom: 15px;
+}
+
+#information .characteristics .items {
+    display: flex;
+    gap: 40px;
+    justify-content: space-evenly;
+}
+
+#information .characteristics .items div {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+#information .characteristics .item h4 {
+    font-weight: 200;
+}
+
+#information .characteristics .item p {
+    font-weight: 400;
+    font-size: 18px;
+    padding-left: 15px;
+}
+
+#information .description {
+    padding: 20px 0px 0px 20px;
+    /*overflow: hidden;*/
+}
+
+#information .description textarea {
+    width: 100%;
+    height: 100%;
+    background-color: #FFFFFF;
+    padding: 5px;
+    line-height: 1.7;
+    overflow: auto;
+}
+
+#information .description h3 {
+    text-align: center;
+    font-size: 28px;
+    font-weight: 400;
+    margin-bottom: 15px;
+}
+
+#information .description p {
+    overflow: auto;
+}
+
+/* Images slide show css*/
+* {
+    box-sizing: border-box
+}
+
+/* Slideshow container */
+.slideshow-container {
+    max-width: 1000px;
+    position: relative;
+    /*margin: auto;*/
+}
+
+/* Hide the images by default */
+.mySlides {
+    display: none;
+    width: 100%;
+    height: 350px;
+    /*height: 500px;*/
+}
+
+.image-layout-container .slideshow-container .mySlides.fade img {
+    height: 100%;
+}
+
+/* Next & previous buttons */
+.prev, .next {
+    cursor: pointer;
+    position: absolute;
+    top: 50%;
+    width: auto;
+    margin-top: -22px;
+    padding: 16px;
+    color: white;
+    font-weight: bold;
+    font-size: 18px;
+    transition: 0.6s ease;
+    border-radius: 0 3px 3px 0;
+    user-select: none;
+}
+
+/* Position the "next button" to the right */
+.next {
+    right: 0;
+    border-radius: 3px 0 0 3px;
+}
+
+/* On hover, add a black background color with a little bit see-through */
+.prev:hover, .next:hover {
+    background-color: rgba(0, 0, 0, 0.8);
+}
+
+/* Caption text */
+.text {
+    color: #f2f2f2;
+    font-size: 15px;
+    padding: 8px 12px;
+    position: absolute;
+    bottom: 8px;
+    width: 100%;
+    text-align: center;
+}
+
+/* Number text (1/3 etc) */
+.numbertext {
+    color: #f2f2f2;
+    font-size: 12px;
+    padding: 8px 12px;
+    position: absolute;
+    top: 0;
+}
+
+/* The dots/bullets/indicators */
+.dot {
+    cursor: pointer;
+    height: 15px;
+    width: 15px;
+    margin: 0 2px;
+    background-color: #bbb;
+    border-radius: 50%;
+    display: inline-block;
+    transition: background-color 0.6s ease;
+}
+
+.active, .dot:hover {
+    background-color: #717171;
+}
+
+/* Fading animation */
+.fade {
+    animation-name: fade;
+    animation-duration: 1.5s;
+}
+
+@keyframes fade {
+    from {
+        opacity: .4
+    }
+    to {
+        opacity: 1
+    }
+}
+
+.img-item {
+    grid-area: main;
+    height: 172.5px;
+}
+
+.image0 {
+    grid-area: img0;
+}
+
+.image1 {
+    grid-area: img1;
+}
+
+.image2 {
+    grid-area: img2;
+}
+
+@media screen and (max-width: 1023px) {
+    .layout-item-1 {
+        grid-area: main-img;
+    }
+
+    .layout-item-images {
+        grid-area: other-img;
+    }
+
+    .information-wrapper.layout-item-profile-info {
+        grid-area: profile-info;
+    }
+
+    .hero__information.layout-item-2 {
+        grid-area: hero-info;
+    }
+
+    #hero .images-container {
+        grid-area: images;
+    }
+
+    #hero {
+        display: grid;
+        height: unset;
+        grid-template-columns: repeat(3, 1fr);
+        grid-template-areas:
+        "main-img main-img main-img"
+        "hero-info hero-info hero-info";
+    }
+
+    #hero .hero__information {
+        padding-left: unset;
+    }
+
+    #hero .hero__information.layout-item-images {
+        order: 1;
+    }
+
+    #hero .information-wrapper.layout-item-profile-info {
+        order: 3;
+    }
+
+    #hero .hero__information h3 {
+        order: 2;
+    }
+
+    #information {
+        grid-template-areas:
+        "characteristic characteristic"
+        "desc desc";
+    }
+
+    #information .characteristics {
+        grid-area: characteristic;
+    }
+
+    #information .description {
+        grid-area: desc;
+    }
+}
+
+@media screen and (max-width: 450px) {
+    #hero .hero__main_image-wrapper {
+        height: unset;
+        margin-bottom: 20px;
+    }
+
+    #hero .images-container {
+        display: flex;
+        flex-direction: column;
+    }
+
+    #hero .other__images-wrapper {
+        max-height: 300px;
+        height: unset;
+        /*object-fit: unset;*/
+    }
+
+    #hero .other__images-wrapper img {
+        object-fit: unset;
+    }
+}

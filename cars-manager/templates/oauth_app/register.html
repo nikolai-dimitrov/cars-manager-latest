@@ -1,0 +1,54 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Log in</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://kit.fontawesome.com/842012a7cc.js"></script>
+    <link rel="stylesheet" href="{% static 'css/reset.css' %}">
+    <link rel="stylesheet" href="{% static 'css/register.css' %}">
+</head>
+<body>
+<section class="hero">
+    <article class="login">
+        <div class="left-side">
+            <form action="{% url 'Register' %}" method="post" class="form">
+                <div>
+                    <i class="fa-regular fa-user"></i>
+                    <div class="divider"></div>
+                    {{ form.username }}
+                </div>
+                <div>
+                    <i class="fa-regular fa-envelope"></i>
+                    <div class="divider"></div>
+                    {{ form.email }}
+                </div>
+                <div>
+                    <i class="fa-solid fa-key"></i>
+                    <div class="divider"></div>
+                    {{ form.password1 }}
+                </div>
+                <div>
+                    <i class="fa-solid fa-key"></i>
+                    <div class="divider"></div>
+                    {{ form.password2 }}
+                </div>
+                <button class="btn-primary">Sign up</button>
+                <div class="horizontal-divider"></div>
+                <div class="form__footer_container">
+                <span>You already have an account?
+                    <a href="{% url 'Log in' %}">Sign in</a>
+                </span>
+                </div>
+                {% for error in form.errors.values %}
+                    {{ error }}
+                {% endfor %}
+                {% csrf_token %}
+            </form>
+        </div>
+        <img src="{% static 'image/errors/samuele-errico-piccarini-FMbWFDiVRPs-unsplash.jpg' %}" alt="">
+    </article>
+</section>
+</body>
+</html>

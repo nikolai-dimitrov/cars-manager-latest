@@ -1,0 +1,73 @@
+{% extends 'main/base.html' %}
+{% load static %}
+{% load ad_heading_decorate %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    {% block page_styles %}
+        <link rel="stylesheet" href="{% static 'css/profile-ads-css/profile-page-cards.css' %}">
+        <script defer src="{% static 'src/ad/details-ad.js' %}"></script>
+    {% endblock %}
+    {% block page_title %}
+        <title>Favourites</title>
+    {% endblock %}
+</head>
+{% block page_content %}
+    <section class="hero">
+        {% for ad in page_obj %}
+            <article class="card">
+                <div class="img-wrapper">
+                    <img class="card__img" src="{{ ad.get_main_photo }}" alt="car">
+                    <p class="price">{{ ad.price }} <span>USD</span></p>
+                </div>
+                <div class="body">
+                    <h3 class="body__title">{{ ad.title|cut_heading }}</h3>
+                    <h4>{{ ad.car }} {{ ad.model }}</h4>
+                    <ul class="body__items" role="list">
+                        <li class="body__item">
+                            <p class="item"><i class="fa-regular fa-calendar"></i>{{ ad.year_of_manufacture }}</p>
+                        </li>
+                        <li class="body__item">
+                            <p class="item"><i class="fa-solid fa-car"></i>{{ ad.horse_power }}HP</p>
+                        </li>
+                        <li class="body__item">
+                            <p class="item"><i class="fa-solid fa-gauge-high"></i>{{ ad.mileage }}km</p>
+                        </li>
+                        <li class="body__item">
+                            <p class="item"><i class="fa-solid fa-gears"></i>{{ ad.transmission }}</p>
+                        </li>
+                    </ul>
+                    <div class="body__bottom-wrapper">
+                        <a href="{% url 'details ad' ad.pk %}">READ MORE</a>
+                        <a href="{% url 'remove bookmark' ad.pk %}"><i class="fa-regular fa-star"></i></a>
+                    </div>
+                </div>
+            </article>
+        {% endfor %}
+    </section>
+    {% if page_obj %}
+        <div class="pagination-background">
+            <div>
+                {% if page_obj.has_previous %}
+                    <a href="?page={{ page_obj.previous_page_number }}"
+                       class="custom-div-buttons pagination-buttons">
+                        <i class="fa-solid fa-backward pagination-arrow"></i>
+                    </a>
+                {% endif %}
+
+                <label class="custom-div-buttons-pagination">
+                    Page {{ page_obj.number }} of {{ page_obj.paginator.num_pages }}
+                </label>
+
+                {% if page_obj.has_next %}
+                    <a href="?page={{ page_obj.next_page_number }}" class="custom-div-buttons">
+                        <i class="fa-solid fa-forward pagination-arrow"></i>
+                    </a>
+                {% endif %}
+            </div>
+        </div>
+    {% endif %}
+{% endblock %}
+</html>

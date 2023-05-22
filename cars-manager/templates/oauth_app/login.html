@@ -1,0 +1,82 @@
+{% load socialaccount %}
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Log in</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://kit.fontawesome.com/842012a7cc.js"></script>
+    <link rel="stylesheet" href="{% static 'css/login.css' %}">
+</head>
+<body>
+<section class="hero">
+    <article class="login">
+        <div class="left-side">
+            <form action="{% url 'Log in' %}" method="post" class="form">
+                {% csrf_token %}
+                <div>
+                    <i class="fa-regular fa-user"></i>
+                    <div class="divider"></div>
+                    {{ form.username }}
+                </div>
+                <div>
+                    <i class="fa-solid fa-key"></i>
+                    <div class="divider"></div>
+                    {{ form.password }}
+                </div>
+                <button class="btn-primary">Sign in</button>
+            </form>
+            <form class="auth-form" action="{% provider_login_url 'google' %}" method="post">
+                {% csrf_token %}
+                <button class="btn-primary last">
+                    <i class="fa-brands fa-google"></i>
+                    Sign in with Google
+                </button>
+                <div class="horizontal-divider"></div>
+                <div class="form__footer_container">
+            <span>Don't have an account
+                <a href="{% url 'Register' %}">Sign up</a>
+            </span>
+                </div>
+                {% if messages %}
+                    <div class="error-message">
+                        {% for message in messages %}
+                            {{ message }}
+                        {% endfor %}
+                    </div>
+                {% endif %}
+                {% if form.errors %}
+                    <div class="error-message">
+                        {% for error in form.errors.values %}
+                            {{ error }}
+                        {% endfor %}
+                    </div>
+                {% endif %}
+            </form>
+        </div>
+        <img src="{% static 'image/errors/samuele-errico-piccarini-FMbWFDiVRPs-unsplash.jpg' %}" alt="">
+    </article>
+</section>
+</body>
+</html>
+{#<form class="auth-form" action="{% provider_login_url 'google' %}" method="post"#}
+{#      style="margin-top: 7px;margin-left: 120px">#}
+{#    {% csrf_token %}#}
+{#    <button type="submit" class="btn btn-primary auth google google-sing-login">#}
+{#        <i class="fa-brands fa-google"></i> Sign in with Google#}
+{#    </button>#}
+{#    {% if messages %}#}
+{#        <div class="error-message">#}
+{#            {% for message in messages %}#}
+{#                {{ message }}#}
+{#            {% endfor %}#}
+{#        </div>#}
+{#    {% endif %}#}
+{#    {% if form.errors %}#}
+{#        <div class="error-message">#}
+{#            {% for error in form.errors.values %}#}
+{#                {{ error }}#}
+{#            {% endfor %}#}
+{#        </div>#}
+{#    {% endif %}#}

@@ -1,0 +1,50 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link rel="stylesheet" href="{% static 'css/profile-nav/profile-nav.css' %}">
+</head>
+<body onload="highlightField()">
+<div class="upper-wrapper">
+    <h1 class="hero__title">Profile</h1>
+    <p class="hero__subtitle">Set your profile settings down below</p>
+    <div class="mini-nav">
+        <ul class="mini-nav__items" role="list">
+            {% if not request.user.profile.is_activated %}
+                <li class="item">
+                    <a href="{% url 'create profile' %}">Create Profile</a>
+                </li>
+            {% else %}
+                <li class="item">
+                    <a href="{% url 'edit profile' %}">Edit Profile</a>
+                </li>
+                <li class="item">
+                    <a href="{% url 'Change password' %}">Change Password</a>
+                </li>
+                <li class="item">
+                    <a href="{% url 'details profile' %}">My Ads</a>
+                </li>
+                {% if request.user.is_staff %}
+                    <li class="item">
+                        <a href="{% url 'admin panel' %}">Admin Panel</a>
+                    </li>
+                {% else %}
+                    <li class="item">
+                        <a href="{% url 'Delete user' %}">Delete Profile</a>
+                    </li>
+                    <li class="item">
+                        <a href="{% url 'send delete code' request.user.pk %}">Send Delete Code</a>
+                    </li>
+                {% endif %}
+                <li class="item">
+                    <a href="{% url 'index' %}">Cancel</a>
+                </li>
+            {% endif %}
+        </ul>
+    </div>
+</div>
+<script src="{% static 'src/profiles/profiles-nav.js' %}"></script>
+</body>
+</html>

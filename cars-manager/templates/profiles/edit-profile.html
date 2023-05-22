@@ -1,0 +1,46 @@
+{% extends 'main/base.html' %}
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    {% block page_styles %}
+        <link rel="stylesheet" href="{% static 'css/profile-nav/profiles-data-form.css' %}">
+    {% endblock %}
+    {% block page_title %}
+        <title>Edit Profile</title>
+    {% endblock %}
+</head>
+<body>
+{% block profile_nav %}
+    {% include 'main/profile-control-nav-partial.html' %}
+{% endblock %}
+{% block page_content %}
+    <form action="{% url 'edit profile' %}" method="post" enctype="multipart/form-data">
+        {% csrf_token %}
+        <div class="img-wrapper" onclick="imageOnClickProfile(event)">
+            <img src="{{ profile.image.url }}" alt="" class="img-input" id="profile-image">
+        </div>
+        <label for="first-name">Name</label>
+        {{ form.first_name }}
+        <label for="last-name">Surname</label>
+        {{ form.last_name }}
+        <label for="phone">Phone</label>
+        {{ form.phone_number }}
+        <label for="location">Age</label>
+        {{ form.age }}
+        <div hidden="hidden">{{ form.image }}</div>
+        {% if form.errors %}
+            <div class="error-message">
+                {% for error in form.errors.values %}
+                    {{ error }}
+                {% endfor %}
+            </div>
+        {% endif %}
+        <button class="hero__form-btn">Save Changes</button>
+    </form>
+{% endblock %}
+<script src="{% static 'src/ad/ad.js' %}"></script>
+</body>
+</html>

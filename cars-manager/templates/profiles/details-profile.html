@@ -1,0 +1,113 @@
+{% extends 'main/base.html' %}
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    {% block page_title %}
+        <title>Profile page</title>
+    {% endblock %}
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    {% block page_styles %}
+        <link rel="stylesheet" href="{% static 'css/profile-ads-css/profile-page.css' %}">
+        <link rel="stylesheet" href="{% static 'css/profile-ads-css/profile-page-cards.css' %}">
+    {% endblock %}
+</head>
+<body>
+{% block profile_nav %}
+    {% include 'main/profile-control-nav-partial.html' %}
+{% endblock %}
+{% block page_content %}
+{% endblock %}
+</body>
+{#{% block page_content %}#}
+{#    <body>#}
+{#    <main>#}
+{#        <div class="container">#}
+{#            <div class="dropdown-profile-information">#}
+{#                <span><i class="fa-regular fa-square-caret-down"></i></span>#}
+{#                <div class="dropdown-content">#}
+{#                    <!--        <div class="container__user-info">-->#}
+{#                    <hr class="hr-text" data-content="First Name">#}
+{#                    <p>{{ object.first_name }}</p>#}
+{#                    <hr class="hr-text" data-content="Last Name">#}
+{#                    <p>{{ object.last_name }}</p>#}
+{#                    <hr class="hr-text" data-content="Age">#}
+{#                    <p>{{ object.age }}</p>#}
+{#                    <hr class="hr-text" data-content="Phone Number">#}
+{#                    <p>{{ object.phone_number }}</p>#}
+{#                    <!--        </div>-->#}
+{#                </div>#}
+{#            </div>#}
+{#            <div class="container__user__controls">#}
+{#                <div class="container__user_vl"></div>#}
+{#                <img class="container__user__image" src="{{ object.image.url }}" alt="profile pic">#}
+{#                <ul role="list" class="container__user_mini_nav">#}
+{#                    <hr class="hr-text" data-content="Edit profile">#}
+{#                    <li><a href="{% url 'edit profile' %}?office=testofice"><i class="fa-solid fa-user-pen"></i></a>#}
+{#                    </li>#}
+{#                    <hr class="hr-text" data-content="Change password">#}
+{#                    <li><a href="{% url 'Change password' %}"><i class="fa-solid fa-lock"></i></a></li>#}
+{#                    {% if not object.user.is_staff %}#}
+{#                        <hr class="hr-text" data-content="Delete profile">#}
+{#                        <li><a href="{% url 'send delete code' object.pk %}"><i#}
+{#                                class="delete-trash fa-solid fa-trash"></i>#}
+{#                        </a>#}
+{#                        </li>#}
+{#                    {% else %}#}
+{#                        <hr class="hr-text" data-content="Admin">#}
+{#                        <li><a href="{% url 'admin panel' %}">#}
+{#                            <i class="fa-solid fa-gamepad"></i>#}
+{#                        </a>#}
+{#                        </li>#}
+{#                    {% endif %}#}
+{#                </ul>#}
+{#                <div class="container__user_vl-bottom"></div>#}
+{#            </div>#}
+{#            <div class="container__user-info">#}
+{#                <hr class="hr-text" data-content="First Name">#}
+{#                <p>{{ object.first_name }}</p>#}
+{#                <hr class="hr-text" data-content="Last Name">#}
+{#                <p>{{ object.last_name }}</p>#}
+{#                <hr class="hr-text" data-content="Age">#}
+{#                <p>{{ object.age }}</p>#}
+{#                <hr class="hr-text" data-content="Phone Number">#}
+{#                <p>{{ object.phone_number }}</p>#}
+{#            </div>#}
+{#        </div>#}
+{#        <hr class="hr-text listing-head" data-content="Your listings">#}
+        <section class="hero">
+            {% for ad in object.ad_set.all %}
+                <article class="card">
+                    <div class="img-wrapper">
+                        <img class="card__img" src="{% static 'image/golf5-1.jpeg' %}" alt="car">
+                        <p class="price">{{ ad.price }} <span>USD</span></p>
+                    </div>
+                    <div class="body">
+                        <h3 class="body__title">Audi A7 TFSI 3.0</h3>
+                        <ul class="body__items" role="list">
+                            <li class="body__item">
+                                <p class="item"><i class="fa-regular fa-calendar"></i>{{ ad.year_of_manufacture }}</p>
+                            </li>
+                            <li class="body__item">
+                                <p class="item"><i class="fa-solid fa-car"></i>{{ ad.horse_power }} HP</p>
+                            </li>
+                            <li class="body__item">
+                                <p class="item"><i class="fa-solid fa-gauge-high"></i>{{ ad.mileage }}km</p>
+                            </li>
+                            <li class="body__item">
+                                <p class="item"><i class="fa-solid fa-gears"></i>{{ ad.transmission }}</p>
+                            </li>
+                        </ul>
+                        <div class="body__bottom-wrapper">
+                            <a href="{% url 'details ad' ad.pk %}">READ MORE</a>
+                            <a href="{% url 'delete ad' ad.pk %}"><i class="fa-solid fa-trash"></i></a>
+                        </div>
+                    </div>
+                </article>
+            {% endfor %}
+        </section>
+{#    </main>#}
+{#{% endblock %}#}
+</body>
+</html>

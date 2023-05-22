@@ -1,0 +1,41 @@
+version: '3.8'
+services:
+  web:
+    image: nikolay988/cars-manager-last
+    build: ./cars-manager
+    command: gunicorn cars.wsgi:application --bind 0.0.0.0:8000
+    # command: python manage.py runserver 0.0.0.0:8000
+    volumes:
+      - ./cars-manager/:/usr/src/app/
+      - ./staticfiles:/tmp/cars-manager/staticfiles
+    ports:
+      - '8000:8000'
+    env_file:
+      - ./cars-manager/envs/prod.env
+    depends_on:
+      - postgres
+  postgres:
+    image: postgres
+    restart: always
+    ports:
+      - '5432:5432'
+    environment:
+      - POSTGRES_PASSWORD=1123QwER
+      - POSTGRES_USER=postgres
+      - POSTGRES_DB=cars_test_db
+      # - PGDATA:/var/lib/postgresql/data/pgdata
+    volumes:
+      - ./postgresql:/var/lib/postgresql/data
+  nginx:
+    image: nginx
+    ports:
+      - '81:80'
+      - '443:443'
+    volumes:
+      - ./staticfiles:/home/app/web/staticfiles
+      - ./nginx/conf.d:/etc/nginx/conf.d
+      - ./nginx/logs:/var/log/nginx
+      - ./certbot/www:/var/www/certbot/:ro
+      - ./certbot/conf:/etc/nginx/ssl/:ro
+    depends_on:
+      - web

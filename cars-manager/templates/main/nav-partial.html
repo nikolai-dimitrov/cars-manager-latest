@@ -1,0 +1,66 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link rel="stylesheet" href="{% static 'css/navigation.css' %}">
+</head>
+<body>
+<header>
+    <nav>
+        <ul role="list">
+            <li><a href="{% url 'index' %}" onclick="onClickIndexPage(event)">
+                <i class="fa-solid fa-house"></i>
+                Home
+            </a>
+            </li>
+            <li><a href="{% url 'show ads' %}">
+                <i class="fa-solid fa-list"></i>
+                Ads</a>
+            </li>
+            <li><a href="{% url 'create ad' %}">
+                <i class="fa-solid fa-plus"></i>
+                Create Ads</a>
+            </li>
+            <li><a href="{% url 'list bookmarks' %}">
+                <i class="fa-solid fa-star"></i>
+                Favourites</a>
+            </li>
+            <li><a href="{% url 'about' %}">
+                <i class="fa fa-book"></i>
+                About</a>
+            </li>
+        </ul>
+        <div class="dropdown">
+            <button class="dropdown-btn">
+                <i class="fa-solid fa-bars"></i>
+            </button>
+            <ul class="dropdown_content">
+                <li class="dropdown_item">
+                    <a href="{% url 'index' %}" onclick="onClickIndexPage(event)">Home</a>
+                </li>
+                <li class="dropdown_item">
+                    <a href="{% url 'show ads' %}">Ads</a>
+                </li>
+                <li class="dropdown_item">
+                    <a href="{% url 'list bookmarks' %}">Favourites</a>
+                </li>
+                <li class="dropdown_item">
+                    <a href="{% url 'about' %}">About</a>
+                </li>
+            </ul>
+        </div>
+        <div>
+            <a href="{% url 'edit profile' %}"><img src="{{ request.user.profile.image.url }}" class="nav-img"
+                                                    alt="profile"
+                                                    onclick="highlightEditAnchor()"></a>
+            <a href="{% url 'Log out' %}">
+                <i class="fa-solid fa-right-from-bracket"></i>
+                Sign out</a>
+        </div>
+    </nav>
+</header>
+<script src="{% static 'src/profiles/profiles-nav.js' %}"></script>
+</body>
+</html>

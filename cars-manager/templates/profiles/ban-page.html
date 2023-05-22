@@ -1,0 +1,83 @@
+{% extends 'main/base.html' %}
+{% load static %}
+{% block page_content %}
+    <!DOCTYPE html>
+    <html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <title>Title</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" href="{% static 'css/ban-page.css' %}">
+    </head>
+    <body>
+    <main>
+        <section class="container">
+            {% for profile in page_obj %}
+                <article class="card">
+                    <div class="card__upper">
+                        <div class="img-wrapper">
+                            <img src="{{ profile.image.url }}" alt="img" class="card__img">
+                        </div>
+                        <div class="name-wrapper">
+                            <h4 class="card__name">{{ profile.first_name }} {{ profile.last_name }}</h4>
+                            {% if profile.user.is_staff %}
+                                <span class="card__subtitle red">Admin</span>
+                            {% else %}
+                                <span class="card__subtitle">Member</span>
+                            {% endif %}
+                        </div>
+                    </div>
+                    <ul class="card__items" role="list">
+                        <li class="info">
+                            <p><i class="fa-solid fa-phone"></i>{{ profile.phone_number }}</p>
+                        </li>
+                        <li class="info">
+                            <p><i class="fa-solid fa-envelope"></i>{{ profile.user.email }}</p>
+                        </li>
+                        <li class="info">
+                            <p><i class="fa-solid fa-location-dot"></i>Sofia to add location in profile</p>
+                        </li>
+                    </ul>
+                    <div class="card-bottom">
+                        <a href="#">
+                            <i class="fa-regular fa-user bottom-i"></i>
+                            Profile
+                        </a>
+                        <a href="{% url 'profile ban' profile.pk page_obj.number %}">
+                            {% if profile.is_banned %}
+                                <i class="fa-solid fa-lock bottom-i"></i>
+                            {% else %}
+                                <i class="fa-solid fa-lock-open"></i>
+                            {% endif %}
+                            Ban
+                        </a>
+                    </div>
+                </article>
+            {% endfor %}
+        </section>
+        {% if page_obj %}
+            <div class="pagination-background">
+                <div>
+                    {% if page_obj.has_previous %}
+                        <a href="?page={{ page_obj.previous_page_number }}"
+                           class="custom-div-buttons pagination-buttons">
+                            <i class="fa-solid fa-backward pagination-arrow"></i>
+                        </a>
+                    {% endif %}
+
+                    <label class="custom-div-buttons-pagination">
+                        Page {{ page_obj.number }} of {{ page_obj.paginator.num_pages }}
+                    </label>
+
+                    {% if page_obj.has_next %}
+                        <a href="?page={{ page_obj.next_page_number }}" class="custom-div-buttons">
+                            <i class="fa-solid fa-forward pagination-arrow"></i>
+                        </a>
+                    {% endif %}
+                </div>
+            </div>
+        {% endif %}
+    </main>
+    </body>
+    </html>
+{% endblock %}

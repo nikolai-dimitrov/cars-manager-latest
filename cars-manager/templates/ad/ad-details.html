@@ -1,0 +1,165 @@
+{% extends 'main/base.html' %}
+{% load static %}
+{% block page_styles %}
+    <link rel="stylesheet" href="{% static 'css/details-ad.css' %}">
+    <script defer src="{% static 'src/ad/ad.js' %}"></script>
+    <script defer src="{% static 'src/ad/details-ad.js' %}"></script>
+{% endblock %}
+{% block page_title %}
+    <title>Details</title>
+{% endblock %}
+{% block page_content %}
+    <body onload="showSlides(1)">
+    <section class="layout">
+        <div class="image-layout-container">
+            <div class="slideshow-container">
+                <div class="mySlides fade">
+                    <img src="{{ main_image.image.url }}" style="width:100%">
+                </div>
+                {% for image in other_images %}
+                    <div class="mySlides fade">
+                        <img src="{{ image.image.url }}" style="width:100%">
+                    </div>
+                {% endfor %}
+                <a class="prev" onclick="plusSlides(-1)">&#10094;</a>
+                <a class="next" onclick="plusSlides(1)">&#10095;</a>
+            </div>
+            <br>
+            <!-- The dots/circles -->
+            <ul class="img-container" role="list">
+                <li class="img-item">
+                    <img src="{{ main_image.image.url }}" alt="">
+                </li>
+                {% for i in other_images %}
+                    <li class="img-item">
+                        <img src="{{ i.image.url }}" alt="">
+                    </li>
+                {% endfor %}
+            </ul>
+            <div class="information-wrapper layout-item-profile-info">
+                <div class="left-side-information">
+                    <div>
+                        <h4>First Name:</h4>
+                        <p class="information__first-name">{{ ad.profile.first_name }}</p>
+                    </div>
+                    <div>
+                        <h4>Last Name:</h4>
+                        <p class="information__last-name">{{ ad.profile.last_name }}</p>
+                    </div>
+                </div>
+                <div class="right-side-information">
+                    <div>
+                        <h4>Age:</h4>
+                        <p class="information__age">{{ ad.profile.age }}</p>
+                    </div>
+                    <div>
+                        <h4>Phone Number:</h4>
+                        <p class="information__phone-number">{{ ad.profile.phone_number }}</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div style="text-align:center">
+            <span class="dot" onclick="currentSlide(1)"></span>
+            <span class="dot" onclick="currentSlide(2)"></span>
+            <span class="dot" onclick="currentSlide(3)"></span>
+            <span class="dot" onclick="currentSlide(4)"></span>
+        </div>
+        {#    <section id="hero">#}
+        {#            <div class="hero__main_image-wrapper layout-item-1">#}
+        {#                <img src="{{ main_image.image.url }}" alt="">#}
+        {#            </div>#}
+        {#            <article class="hero__information layout-item-2">#}
+        {#                <h3 class="layout-item-profile-heading">Information about seller</h3>#}
+        {#                <div class="information-wrapper layout-item-profile-info">#}
+        {#                    <div class="left-side-information">#}
+        {#                        <div>#}
+        {#                            <h4>First Name:</h4>#}
+        {#                            <p class="information__first-name">{{ ad.profile.first_name }}</p>#}
+        {#                        </div>#}
+        {#                        <div>#}
+        {#                            <h4>Last Name:</h4>#}
+        {#                            <p class="information__last-name">{{ ad.profile.last_name }}</p>#}
+        {#                        </div>#}
+        {#                    </div>#}
+        {#                    <div class="right-side-information">#}
+        {#                        <div>#}
+        {#                            <h4>Age:</h4>#}
+        {#                            <p class="information__age">{{ ad.profile.age }}</p>#}
+        {#                        </div>#}
+        {#                        <div>#}
+        {#                            <h4>Phone Number:</h4>#}
+        {#                            <p class="information__phone-number">{{ ad.profile.phone_number }}</p>#}
+        {#                        </div>#}
+        {#                    </div>#}
+        {#                </div>#}
+        {#                <div class="images-container layout-item-images">#}
+        {#                    {% for img in other_images %}#}
+        {#                        <div class="other__images-wrapper layout-item-3">#}
+        {#                            <img src="{{ img.image.url }}" alt="">#}
+        {#                        </div>#}
+        {#                    {% endfor %}#}
+        {#                </div>#}
+        {#            </article>#}
+        {#        </section>#}
+        <section id="information">
+            <div class="characteristics layout-item-4">
+                <h3>Vehicle Characteristics</h3>
+                <ul class="items" role="list">
+                    <div>
+                        <li class="item">
+                            <h4>Make:</h4>
+                            <p>{{ ad.car }}</p>
+                        </li>
+                        <li class="item">
+                            <h4>Model:</h4>
+                            <p>{{ ad.model }}</p>
+                        </li>
+                        <li class="item">
+                            <h4>Year:</h4>
+                            <p>{{ ad.year_of_manufacture }}</p>
+                        </li>
+                        <li class="item">
+                            <h4>Fuel:</h4>
+                            <p>{{ ad.fuel|capfirst }}</p>
+                        </li>
+                        <li class="item">
+                            <h4>HP</h4>
+                            <p>{{ ad.horse_power }}</p>
+                        </li>
+                    </div>
+                    <div>
+                        <li class="item">
+                            <h4>Transmission:</h4>
+                            <p>{{ ad.transmission|capfirst }}</p>
+                        </li>
+                        <li class="item">
+                            <h4>Body Type:</h4>
+                            <p>{{ ad.body_type|capfirst }}</p>
+                        </li>
+                        <li class="item">
+                            <h4>Mileage:</h4>
+                            <p>{{ ad.mileage }}</p>
+                        </li>
+                        <li class="item">
+                            <h4>City:</h4>
+                            <p>{{ ad.city }}</p>
+                        </li>
+                        <li class="item">
+                            <h4>Price:</h4>
+                            <p>{{ ad.price }} $</p>
+                        </li>
+                    </div>
+                </ul>
+            </div>
+            <div class="description layout-item-5">
+                <h3>Description</h3>
+                <div>
+                    <textarea disabled="true" rows="10">{{ ad.description }}</textarea>
+                </div>
+            </div>
+        </section>
+    </section>
+    {#    <script src="{% static 'src/ad/details-ad.js' %}"></script>#}
+    </body>
+{% endblock %}

@@ -1,0 +1,113 @@
+{% extends 'main/base.html' %}
+{% load static %}
+{% include 'main/bootstrap-partial.html' %}
+{% block page_styles %}
+    <link rel="stylesheet" href="{% static 'css/index.css' %}">
+{% endblock %}
+{% block page_title %}
+    <title>Home</title>
+{% endblock %}
+{% block page_content %}
+
+    {% if not request.user.profile.is_activated %}
+        <div class="create-profile-invite-message">
+            <div class="inner-invite-message">Please create profile</div>
+        </div>
+    {% endif %}
+    <body class="index-body-background">
+    <div class="heading-wrapper">
+        <h3 class="heading-style">Search cars in <span>API Ninja</span></h3>
+    </div>
+
+    <form method="post" class="car-search-form" action="{% url 'index' %}">
+        <div class="inputs-container">
+            <div class="inputs-wrapper">
+                <div>
+                    {{ form.make }}
+                </div>
+                <div>
+                    {{ form.model }}
+                </div>
+                <div>
+                    {{ form.year }}
+                </div>
+            </div>
+            <div class="inputs-wrapper">
+                <div>
+                    {{ form.transmission }}
+                </div>
+                <div>
+                    {{ form.fuel_type }}
+                </div>
+                <div>
+                    {{ form.cylinders }}
+                </div>
+            </div>
+        </div>
+        <div class="form__btn-container">
+            <button class="search-button-home">Search</button>
+            <label for="CacheInput">Enable cache between pages</label>
+            <input type="checkbox" id="CacheInput" onclick="checkBoxHandler(event)">
+        </div>
+        {% csrf_token %}
+    </form>
+
+    <div class="results">
+        {% for car in page_obj %}
+            <article class="card">
+                <div class="img-wrapper">
+                    <img src="{{ car.current_img }}"
+                         alt="" class="card__img">
+                </div>
+                <div class="body">
+                    <h3>{{ car.make|capfirst }} {{ car.model }}</h3>
+                    <ul class="items" role="list">
+                        <div class="left-side">
+                            <li class="item">
+                                <p><span>Year: </span>{{ car.year }}</p>
+                            </li>
+                            <li class="item">
+                                <span>Transmission: </span>
+                                <p class="transmission">{{ car.transmission }}</p>
+                            </li>
+                        </div>
+                        <div class="right-side">
+                            <li class="item">
+                                <p><span>Fuel: </span>{{ car.fuel_type }}</p>
+                            </li>
+                            <li class="item">
+                                <p><span>Engine: </span>{{ car.cylinders }} Cylinders</p>
+                            </li>
+                        </div>
+                    </ul>
+                </div>
+                <div class="card__search-wrapper">
+                    <a href="{% url 'show ads' %}" class="card__search-btn">Search</a>
+                </div>
+            </article>
+        {% endfor %}
+    </div>
+    {% if page_obj %}
+        <div class="pagination-background car-line-red">
+            <div>
+                {% if page_obj.has_previous %}
+                    <a href="?page={{ page_obj.previous_page_number }}"
+                       class="custom-div-buttons pagination-buttons">
+                        <i class="fa-solid fa-backward pagination-arrow"></i>
+                    </a>
+                {% endif %}
+
+                <label class="custom-div-buttons">Page {{ page_obj.number }}
+                    of {{ page_obj.paginator.num_pages }}</label>
+
+                {% if page_obj.has_next %}
+                    <a href="?page={{ page_obj.next_page_number }}" class="custom-div-buttons">
+                        <i class="fa-solid fa-forward pagination-arrow"></i>
+                    </a>
+                {% endif %}
+            </div>
+        </div>
+    {% endif %}
+    <script src="{% static 'src/index/index.js' %}"></script>
+    </body>
+{% endblock %}

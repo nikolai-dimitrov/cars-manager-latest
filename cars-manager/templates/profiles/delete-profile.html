@@ -1,0 +1,48 @@
+{% extends 'main/base.html' %}
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    {% block page_styles %}
+        <link rel="stylesheet" href="{% static 'css/profile-nav/profiles-data-form.css' %}">
+    {% endblock %}
+    {% block page_title %}
+        <title>Delete Profile</title>
+    {% endblock %}
+</head>
+<body>
+{% block profile_nav %}
+    {% include 'main/profile-control-nav-partial.html' %}
+{% endblock %}
+{% block page_content %}
+    <form action="{% url 'Delete user' %}" method="post">
+        {% csrf_token %}
+        <div class="img-wrapper">
+            <input type="image" src="{{ profile.image.url }}" class="img-input">
+        </div>
+        <div>
+            <label for="">First Name:</label>
+            <p>{{ object.first_name }}</p>
+        </div>
+        <div>
+            <label for="">Last Name:</label>
+            <p>{{ object.last_name }}</p>
+        </div>
+        <div>
+            <label for="">Phone Number:</label>
+            <p>{{ object.phone_number }}</p>
+        </div>
+        <div>
+            <label for="">Age:</label>
+            <p>{{ object.age }}</p>
+        </div>
+        <label for="">Confirmation Code:</label>
+        {{ form.confirm_delete_code }}
+        <button class="hero__form-btn">Delete Profile</button>
+    </form>
+{% endblock %}
+</body>
+</html>
+{#TODO: CREATE ADD I FAVOURITES#}

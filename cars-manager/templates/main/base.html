@@ -1,0 +1,28 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://kit.fontawesome.com/4820eb40be.js" crossorigin="anonymous"></script>
+    <script src="{% static 'src/ad/ad.js' %}"></script>
+    <link rel="stylesheet" href="{% static 'css/reset.css' %}">
+    {% block page_styles %}
+    {% endblock %}
+    {% block page_title %}
+    {% endblock %}
+</head>
+{% if request.user.is_authenticated %}
+    {% if user.profile.is_activated %}
+        {% include 'main/nav-partial.html' %}
+    {% else %}
+        {% include 'main/nav-no-profile.html' %}
+    {% endif %}
+{% endif %}
+<main>
+    {% block profile_nav %}
+    {% endblock %}
+    {% block page_content %}
+    {% endblock %}
+</main>
+</html>

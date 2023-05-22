@@ -1,0 +1,41 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link rel="stylesheet" href="{% static 'css/navigation.css' %}">
+</head>
+<body>
+<header>
+    <nav>
+        <ul role="list">
+            <li><a href="{% url 'index' %}" onclick="onClickIndexPage(event)">Home</a></li>
+            <li><a href="{% url 'about' %}">About</a></li>
+            <li><a href="{% url 'create profile' %}">Create profile</a></li>
+        </ul>
+        <div class="dropdown">
+            <button class="dropdown-btn">
+                <i class="fa-solid fa-bars"></i>
+            </button>
+            <ul class="dropdown_content">
+                <li class="dropdown_item">
+                    <a href="{% url 'index' %}" onclick="onClickIndexPage(event)">Home</a>
+                </li>
+                <li class="dropdown_item">
+                    <a href="{% url 'about' %}">About</a>
+                </li>
+                <li class="dropdown_item">
+                    <a href="{% url 'create profile' %}">Create Profile</a>
+                </li>
+            </ul>
+        </div>
+        <div>
+            <a href="#" class="nav-img"><img src="{{ request.user.profile.image.url }}" alt="profile"></a>
+            <a href="{% url 'Log out' %}">Log out</a>
+        </div>
+    </nav>
+</header>
+<script src="{% static 'src/profiles/profiles-nav.js' %}"></script>
+</body>
+</html>

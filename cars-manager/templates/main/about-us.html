@@ -1,0 +1,57 @@
+{% extends 'main/base.html' %}
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+</head>
+{% block page_title %}
+    <title>About Us</title>
+{% endblock %}
+{% block page_styles %}
+    <link rel="stylesheet" href="{% static 'css/about-us.css' %}">
+{% endblock %}
+{% block page_content %}
+    {% include 'main/bootstrap-partial.html' %}
+    <body class="login-body">
+    <section id="hero">
+        <div class="img-container">
+            <img src="https://blog.spoongraphics.co.uk/wp-content/uploads/2019/03/thumbnail-7.jpg" alt="no-img">
+        </div>
+    </section>
+    <section id="videos">
+        <h2></h2>
+        <ul class="videos-container" role="list">
+            <li class="videos__item">
+                <iframe src="https://www.youtube.com/embed/aAj0jymEJqg" title="YouTube video player"
+                        frameborder="0"
+                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                        allowfullscreen>
+                </iframe>
+            </li>
+            <li class="videos__item">
+                <iframe src="https://www.youtube.com/embed/-4zsY28t76k" title="YouTube video player"
+                        frameborder="0"
+                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                        allowfullscreen>
+                </iframe>
+            </li>
+            <li class="videos__item">
+                <iframe width="560" height="315" src="https://www.youtube.com/embed/oBR-vCxkZUk"
+                        title="YouTube video player" frameborder="0"
+                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                        allowfullscreen>
+                </iframe>
+            </li>
+            <li class="videos__item">
+                <iframe src="https://www.youtube.com/embed/_ZHAYPkQtp8" title="YouTube video player"
+                        frameborder="0"
+                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                        allowfullscreen>
+                </iframe>
+            </li>
+        </ul>
+    </section>
+    </body>
+{% endblock %}

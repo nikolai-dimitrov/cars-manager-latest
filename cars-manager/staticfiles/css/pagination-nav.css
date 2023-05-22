@@ -1,0 +1,26 @@
+.pagination-background {
+    /*display: flex;*/
+    background-color: #0d489f;
+    width: 40%;
+    margin: 45px auto 0 auto;
+    border-radius: 8px;
+}
+
+.pagination-background > div {
+    display: flex;
+    justify-content: center;
+    margin: 0 auto;
+}
+
+.custom-div-buttons-pagination {
+    text-decoration: None;
+    color: #ffffff;
+}
+
+.pagination-buttons {
+    padding-left: 0px;
+}
+
+.pagination-arrow {
+    margin: 0 10px !important;
+}

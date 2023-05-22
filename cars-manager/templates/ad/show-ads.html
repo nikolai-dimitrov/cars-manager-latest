@@ -1,0 +1,130 @@
+{% extends 'main/base.html' %}
+{% load ad_heading_decorate %}
+{% load static %}
+{% load cloudinary %}
+{% block page_title %}
+    <title>Ads Collection</title>
+{% endblock %}
+{% block page_styles %}
+    <link rel="stylesheet" href="{% static 'css/show-ads/show-ads.css' %}">
+    <script defer src="{% static 'src/ad/details-ad.js' %}"></script>
+{% endblock %}
+{% block page_content %}
+    <body onload="setRequired()">
+    <section id="form-section">
+        <form method="post" action="{% url 'show ads' %}" class="ad-search-form">
+            <h1 class="ad-heading-color">Search</h1>
+            <div class="inner-form">
+                <div class="form__inputs-wrapper">
+                    <div class="upper-part">
+                        <div class="label-wrapper layout1">
+                            <label class="ad-labels-custom">Title</label>
+                            {{ form.title }}
+                        </div>
+                        <div class="label-wrapper layout2">
+                            <label class="ad-labels-custom">Price</label>
+                            {{ form.price }}
+                        </div>
+                        <div class="label-wrapper layout3">
+                            <label class="ad-labels-custom">Year of manufacture</label>
+                            {{ form.year_of_manufacture }}
+                        </div>
+                    </div>
+                    <div class="left-right-wrapper">
+                        <div class="left-side">
+                            <div class="label-wrapper layout4">
+                                <label class="ad-labels-custom">Car brand</label>
+                                {{ form.car }}
+                            </div>
+                            <div class="label-wrapper layout5">
+                                <label class="ad-labels-custom">Car model</label>
+                                {{ form.model }}
+                            </div>
+                            <div class="label-wrapper layout6">
+                                <label class="ad-labels-custom">Transmission</label>
+                                {{ form.transmission }}
+                            </div>
+                        </div>
+                        <div class="right-side">
+                            <div class="label-wrapper layout7">
+                                <label class="ad-labels-custom">Body type</label>
+                                {{ form.body_type }}
+                            </div>
+                            <div class="label-wrapper layout8">
+                                <label class="ad-labels-custom">City</label>
+                                {{ form.city }}
+                            </div>
+                            <div class="label-wrapper layout9">
+                                <label class="ad-labels-custom">Fuel</label>
+                                {{ form.fuel }}
+                            </div>
+                            {% csrf_token %}
+                        </div>
+                    </div>
+                </div>
+                <div class="label-wrapper layout10">
+                    <button type="submit" class="search-form-btn">
+                        Search
+                        <i class="fa-solid fa-magnifying-glass small"></i>
+                    </button>
+                </div>
+            </div>
+        </form>
+    </section>
+    <section class="hero">
+        {% for ad in page_obj %}
+            <article class="card">
+                <div class="img-wrapper">
+                    <img class="card__img" src="{{ ad.get_main_photo }}" alt="car">
+                    <p class="price">{{ ad.price }} <span>USD</span></p>
+                </div>
+                <div class="body">
+                    <h3 class="body__title">{{ ad.title|cut_heading }}</h3>
+                    <h4>{{ ad.car }} {{ ad.model }}</h4>
+                    <ul class="body__items" role="list">
+                        <li class="body__item">
+                            <p class="item"><i class="fa-regular fa-calendar"></i>{{ ad.year_of_manufacture }}</p>
+                        </li>
+                        <li class="body__item">
+                            <p class="item"><i class="fa-solid fa-car"></i>{{ ad.horse_power }}HP</p>
+                        </li>
+                        <li class="body__item">
+                            <p class="item"><i class="fa-solid fa-gauge-high"></i>{{ ad.mileage }}km</p>
+                        </li>
+                        <li class="body__item">
+                            <p class="item"><i class="fa-solid fa-gears"></i>{{ ad.transmission }}</p>
+                        </li>
+                    </ul>
+                    <div class="body__bottom-wrapper">
+                        <a href="{% url 'details ad' ad.pk %}">READ MORE</a>
+                        <a href="{% url 'bookmark ad' %}?ad_pk={{ ad.pk }}"><i class="fa-regular fa-star"></i></a>
+                    </div>
+                </div>
+            </article>
+        {% endfor %}
+    </section>
+    {% if page_obj %}
+        <div class="pagination-background">
+            <div>
+                {% if page_obj.has_previous %}
+                    <a href="?page={{ page_obj.previous_page_number }}"
+                       class="custom-div-buttons pagination-buttons">
+                        <i class="fa-solid fa-backward pagination-arrow"></i>
+                    </a>
+                {% endif %}
+
+                <label class="custom-div-buttons">Page {{ page_obj.number }}
+                    of {{ page_obj.paginator.num_pages }}</label>
+
+                {% if page_obj.has_next %}
+                    <a href="?page={{ page_obj.next_page_number }}" class="custom-div-buttons">
+                        <i class="fa-solid fa-forward pagination-arrow"></i>
+                    </a>
+                {% endif %}
+            </div>
+        </div>
+    {% endif %}
+    {#    <script src="{% static 'src/ad/ad.js' %}"></script>#}
+    {#    <script src="{% static 'src/ad/details-ad.js' %}"></script>#}
+    </body>
+{% endblock %}

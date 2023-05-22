@@ -1,0 +1,59 @@
+{% extends 'main/base.html' %}
+{% load static %}
+{% load cloudinary %}
+{% block page_title %}
+    <title>Create Ad</title>
+{% endblock %}
+{% block page_styles %}
+    <link rel="stylesheet" href="{% static 'css/create-ad.css' %}">
+{% endblock %}
+{% block page_content %}
+    <body onload="unsetModels()">
+    <form action="{% url 'create ad' %}" method="post" enctype="multipart/form-data">
+        {% csrf_token %}
+        <label for="title">Title:</label>
+        {{ form.title }}
+        <label for="price">Price:</label>
+        {{ form.price }}
+        <label for="phone_number">Year:</label>
+        {{ form.year_of_manufacture }}
+        <label for="make">Car Brand:</label>
+        {{ form.car }}
+        <label for="location">Car Model:</label>
+        {{ form.model }}
+        <label for="location">Transmission:</label>
+        {{ form.transmission }}
+        <label for="location">Body Type:</label>
+        {{ form.body_type }}
+        <label for="location">City:</label>
+        {{ form.city }}
+        <label for="location">Horsepower:</label>
+        {{ form.horse_power }}
+        <label for="location">Mileage:</label>
+        {{ form.mileage }}
+        <label for="location">Fuel:</label>
+        {{ form.fuel }}
+        {{ form_images.management_form }}
+        <label for="location">Description:</label>
+        {{ form.description }}
+        <div class="images-wrapper">
+            {% for photo in form_images %}
+                <div>
+                    <img src="https://res.cloudinary.com/dltjy2gzz/image/upload/v1669814122/cars/default/no-image-icon-15_jm4w3b.png"
+                         alt="image" onclick="imageOnClick(event)"
+                         class="ad-image">
+                    <div hidden="hidden">{{ photo }}</div>
+                </div>
+            {% endfor %}
+        </div>
+        <button class="hero__form-btn">Create</button>
+        {% if form.errors %}
+            <div class="error-message">
+                {% for error in form.errors.values %}
+                    {{ error }}
+                {% endfor %}
+            </div>
+        {% endif %}
+    </form>
+    </body>
+{% endblock %}
