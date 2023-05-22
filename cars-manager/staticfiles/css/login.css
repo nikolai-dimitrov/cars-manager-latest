@@ -60,7 +60,9 @@ img {
     width: 50%;
     object-fit: cover;
 }
-
+.auth-form {
+    width: 100%;
+}
 button {
     margin-bottom: 10px;
 }
