@@ -12,8 +12,3 @@ def ad_pre_delete_images(sender, instance, *args, **kwargs):
         current_image = image_set[i]
         uploader.destroy(f'{current_image.image}')
 
-# @receiver(pre_delete, sender=Ad)
-# def ad_pre_delete_images(sender, instance, *args, **kwargs):
-#     image_set = instance.photo_set.all()
-#     for i in range(len(image_set)):
-#         uploader.destroy(f'cars/{instance.get_title}_image_{i}')
