@@ -28,8 +28,6 @@ SECRET_KEY = os.environ.get('SECRET_KEY')
 DEBUG = os.environ.get('DEBUG')
 CSRF_TRUSTED_ORIGINS = ['http://cars-manager.tk', 'https://cars-manager.tk']
 ALLOWED_HOSTS = os.environ.get('ALLOWED_HOSTS').split(' ')
-# ALLOWED_HOSTS = []
-# CSRF_TRUSTED_ORIGINS = os.environ.get("CSRF_TRUSTED_ORIGINS").split()
 # Application definition
 INSTALLED_APPS = [
     'rest_framework',
@@ -104,16 +102,6 @@ DATABASES = {
         'PORT': os.environ.get('DB_PORT'),
     }
 }
-# DATABASES = {
-#     'default': {
-#         'ENGINE': 'django.db.backends.postgresql',
-#         'NAME': 'cars_test_db',
-#         'USER': 'postgres',
-#         'PASSWORD': '1123QwER',
-#         'HOST': '127.0.0.1',
-#         'PORT': '5432',
-#     }
-# }
 
 # Password validation
 # https://docs.djangoproject.com/en/4.1/ref/settings/#auth-password-validators
@@ -191,13 +179,6 @@ EMAIL_HOST_PASSWORD = os.environ.get('EMAIL_HOST_PASSWORD')
 EMAIL_PORT = os.environ.get('EMAIL_PORT')
 EMAIL_USE_TLS = True
 
-# EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
-# EMAIL_HOST = 'smtp.gmail.com'
-# EMAIL_FROM = 'pythonproject771@gmail.com'
-# EMAIL_HOST_USER = 'pythonproject771@gmail.com'
-# EMAIL_HOST_PASSWORD = 'pvgaxgyxexmnwggb'
-# EMAIL_PORT = os.environ.get('587')
-# EMAIL_USE_TLS = True
 
 PASSWORD_RESET_TIMEOUT = 14400
 
