@@ -161,7 +161,7 @@ ul.mini-nav__items {
     }
 }
 
-@media screen and (max-width: 425px) {
+@media screen and (max-width: 462px) {
     main {
         padding: 0px 20px;
     }

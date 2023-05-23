@@ -201,7 +201,7 @@ div.results {
     }
 }
 
-@media screen and (max-width: 440px) {
+@media screen and (max-width: 462px) {
     .inputs-container {
         flex-direction: column;
         width: 100%;
