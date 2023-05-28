@@ -299,84 +299,21 @@ main {
 }
 
 @media screen and (max-width: 1023px) {
-    .layout-item-1 {
-        grid-area: main-img;
-    }
-
-    .layout-item-images {
-        grid-area: other-img;
-    }
-
-    .information-wrapper.layout-item-profile-info {
-        grid-area: profile-info;
-    }
-
-    .hero__information.layout-item-2 {
-        grid-area: hero-info;
-    }
-
-    #hero .images-container {
-        grid-area: images;
-    }
-
-    #hero {
-        display: grid;
-        height: unset;
-        grid-template-columns: repeat(3, 1fr);
-        grid-template-areas:
-        "main-img main-img main-img"
-        "hero-info hero-info hero-info";
-    }
-
-    #hero .hero__information {
-        padding-left: unset;
-    }
-
-    #hero .hero__information.layout-item-images {
-        order: 1;
-    }
-
-    #hero .information-wrapper.layout-item-profile-info {
-        order: 3;
-    }
-
-    #hero .hero__information h3 {
-        order: 2;
-    }
-
-    #information {
-        grid-template-areas:
-        "characteristic characteristic"
-        "desc desc";
-    }
-
-    #information .characteristics {
-        grid-area: characteristic;
-    }
-
-    #information .description {
-        grid-area: desc;
-    }
-}
-
-@media screen and (max-width: 450px) {
-    #hero .hero__main_image-wrapper {
-        height: unset;
-        margin-bottom: 20px;
-    }
-
-    #hero .images-container {
+    .image-layout-container {
         display: flex;
         flex-direction: column;
     }
+}
 
-    #hero .other__images-wrapper {
-        max-height: 300px;
-        height: unset;
-        /*object-fit: unset;*/
+@media screen and (max-width: 461px) {
+    #information {
+        display: grid;
+        grid-template-columns: repeat(1, 1fr);
     }
-
-    #hero .other__images-wrapper img {
-        object-fit: unset;
+    #information .characteristics {
+        margin-bottom: 15px;
+    }
+    #information .description {
+        padding: unset;
     }
 }

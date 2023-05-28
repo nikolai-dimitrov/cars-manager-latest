@@ -18,6 +18,7 @@ header {
 .ad-heading-color {
     text-align: center;
 }
+
 #form-section {
     display: flex;
     flex-direction: column;
@@ -43,6 +44,26 @@ form .left-right-wrapper {
 form .left-side .label-wrapper:not(:last-child),
 form .right-side .label-wrapper:not(:last-child) {
     margin-bottom: 20px;
+}
+
+form .label-wrapper.layout1 {
+    margin-bottom: 15px !important;
+}
+
+form .label-wrapper.layout2 {
+    margin-bottom: 42px !important;
+}
+
+form .label-wrapper.layout2 i {
+    cursor: pointer;
+}
+
+form .label-wrapper.layout3 i {
+    cursor: pointer;
+}
+
+form .label-wrapper.layout3 .ad-labels-custom {
+    margin-bottom: 10px;
 }
 
 form .upper-part .label-wrapper:not(:last-child) {
@@ -75,6 +96,24 @@ form select {
 .layout10 {
     width: 100%;
 }
+
+.label-wrapper.layout2 {
+    position: relative;
+}
+
+.label-wrapper.layout3 {
+    position: relative;
+}
+
+.show-sliders {
+    scale: 1;
+!important;
+    visibility: unset;
+!important;
+    position: unset;
+!important;
+}
+
 
 form .label-wrapper.layout10 .search-form-btn {
     width: 100%;
@@ -182,22 +221,101 @@ form .label-wrapper.layout10 .search-form-btn {
     color: #336efd;
 }
 
-/*.card .body .body__bottom-wrapper a:first-child {*/
+/*//range test*/
+.range-activate {
+    transition: 0.4s;
+    margin-top: 10px !important;
+    scale: 1 !important;
+    visibility: visible !important;
+    position: unset !important;
+}
 
-/*  background-color:#FFFFFF;*/
-/*  color: #336efd;*/
-/*  padding: 3px 15px;*/
-/*  border-radius: 20px;*/
-/*  font-size: 13px;*/
-/*  transition: all 300ms ease-in-out;*/
+.range {
+    scale: 0.1;
+    position: absolute;
+    visibility: hidden;
+    transition: 0.4s;
+
+}
+
+.range-slider {
+    height: 5px;
+    position: relative;
+    background-color: #e1e9f6;
+    border-radius: 2px;
+}
+
+.range-selected {
+    height: 100%;
+    left: 0%;
+    right: 0%;
+    position: absolute;
+    border-radius: 5px;
+    background-color: #1b53c0;
+}
+
+.range-input {
+    position: relative;
+}
+
+.range-input input {
+    position: absolute;
+    width: 100%;
+    height: 5px;
+    top: -7px;
+    background: none;
+    pointer-events: none;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+}
+
+.range-input input::-webkit-slider-thumb {
+    height: 20px;
+    width: 20px;
+    border-radius: 50%;
+    border: 3px solid #1b53c0;
+    background-color: #fff;
+    pointer-events: auto;
+    -webkit-appearance: none;
+}
+
+.range-input input::-moz-range-thumb {
+    height: 15px;
+    width: 15px;
+    border-radius: 50%;
+    border: 3px solid #1b53c0;
+    background-color: #fff;
+    pointer-events: auto;
+    -moz-appearance: none;
+}
+
+.range-price {
+    margin-top: 15px;
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+
+.range-desc span {
+    font-weight: bold;
+}
+
+.range-price label {
+    margin-right: 5px;
+}
+
+.range-price input {
+    width: 68px;
+    padding: 5px;
+}
+
+/*.range-price input:first-of-type {*/
+/*    !*margin-right: 15px;*!*/
+/*    width: 68px;*/
 /*}*/
 
-/*.card .body .body__bottom-wrapper a:first-child:hover {*/
-/*  background-color:#336efd ;*/
-/*  color: #FFFFFF;*/
-/*  padding: 3px 15px;*/
-/*  font-size: 13px;*/
-/*}*/
 @media screen and (max-width: 900px) {
     .hero {
         grid-template-columns: repeat(2, 1fr);
@@ -215,25 +333,32 @@ form .label-wrapper.layout10 .search-form-btn {
         justify-content: center;
         /*gap: 60px;*/
     }
+
     .left-right-wrapper select {
         padding: 5px;
     }
+
     form .upper-part input {
         padding: 4px;
     }
+
     form {
         width: 66%;
     }
+
     form .inner-form {
         width: 100%;
     }
+
     form .form__inputs-wrapper {
         flex-direction: column;
         width: 100%;
     }
+
     .left-side {
         width: 50%;
     }
+
     .right-side {
         width: 50%;
     }
@@ -295,6 +420,7 @@ form .label-wrapper.layout10 .search-form-btn {
     form .label-wrapper {
         width: 80%;
     }
+
     form .label-wrapper.layout10 .search-form-btn {
         width: 80%;
         margin: 0 auto;

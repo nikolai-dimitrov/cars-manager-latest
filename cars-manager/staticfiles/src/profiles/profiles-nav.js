@@ -8,6 +8,9 @@ function highlightField() {
         if (anchor.textContent === sessionStorage.getItem('clickedAnchor')) {
             anchor.classList.add('choosen_item_nav');
         }
+        if (anchor.textContent === 'Create Profile') {
+            changeNavStyles(anchor)
+        }
     }
 }
 
@@ -20,6 +23,14 @@ function addAnchorTextContent(event) {
         sessionStorage.setItem('clickedAnchor', 'Delete Profile');
     } else {
         sessionStorage.setItem('clickedAnchor', event.target.textContent);
+    }
+}
+
+function changeNavStyles(el) {
+    let width = innerWidth;
+    if (width <= 461) {
+        let divElementNavWrapper = document.getElementsByClassName('mini-nav')[0];
+        divElementNavWrapper.style.width = '50%';
     }
 }
 

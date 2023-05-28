@@ -61,7 +61,7 @@ class Ad(models.Model):
     mileage = models.PositiveIntegerField(
 
     )
-    price = models.FloatField(
+    price = models.IntegerField(
 
     )
     description = models.TextField(

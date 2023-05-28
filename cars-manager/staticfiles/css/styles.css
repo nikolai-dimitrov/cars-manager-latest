@@ -1,14 +1,10 @@
 @import "reset.css";
-/*@import "nav.css";*/
-/*@import url(login-old.css);*/
-/*@import "login.css";*/
+
 @import "create-ad.css";
-@import "../../old_templates/search-ad.css";
-@import "../../old_templates/card-ad.css";
 @import "about-us.css";
-/*@import "../../old_templates/profile.css";*/
+
 @import "pagination-nav.css";
-/*@import "../../old_templates/delete-ad.css";*/
-@import "details-ad.css";
+
+/*@import "details-ad.css";*/
 @import "errors.css";
 @import "index.css";

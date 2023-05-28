@@ -14,7 +14,7 @@ current_year = int(datetime.now().year)
 class AdSearchForm(forms.Form, FormControlsMixin):
     classes = {
         'title': 'ad-form-field char-field',
-        'price': 'ad-form-field integer-field',
+        # 'price': 'ad-form-field float-field',
         'car': 'ad-form-field choice-field',
         'year_of_manufacture': 'ad-form-field integer-field',
         'model': 'ad-form-field choice-field',
@@ -50,8 +50,8 @@ class AdSearchForm(forms.Form, FormControlsMixin):
             MinValueValidator(YEAR_OF_MANUFACTURE_MIN),
             MaxValueValidator(current_year),
         ), label='',
-
     )
+
     fuel = forms.ChoiceField(
         choices=Fuel.choices(),
         label='',
@@ -64,7 +64,7 @@ class AdSearchForm(forms.Form, FormControlsMixin):
         choices=Transmission.choices(),
         label='',
     )
-    price = forms.FloatField()
+    # price = forms.FloatField()
     city = forms.ChoiceField()
 
 

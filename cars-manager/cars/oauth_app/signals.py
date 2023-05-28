@@ -15,6 +15,8 @@ def profile_pre_delete_images(sender, instance, *args, **kwargs):
 def create_profile_to_user(sender, instance, created, *args, **kwargs):
     if created:
         Profile.objects.create(user=instance).save()
+        # if instance.is_superuser:
+        #     instance.is_email_verified = True
 
 
 @receiver(post_save, sender=Profile)

@@ -1,7 +1,7 @@
 const carModelsPath = '/vehicle/api';
 // const host = 'http://127.0.0.1:8000';
 // const host = 'http://localhost:81';
-const host = 'https://cars-manager.tk';
+const host = 'https://cars-manager.store';
 const options = [];
 
 
@@ -20,15 +20,33 @@ async function setModel() {
 }
 
 
-function unsetModels() {
+async function unsetModels() {
     const modelField = document.querySelector('.model');
     const opt = Array.from(modelField.getElementsByTagName('option'));
+    let editAdFlag = false;
+    let notRemovableModels = []
+    if (window.location.href.split('/').includes('edit')) {
+        let carField = document.getElementById('id_car')
+        let value = carField.value
+        let carName = carField.options[value].textContent;
+        let carModels = await getCarModels(carName)
+        for (const el of carModels) {
+            notRemovableModels.push(el['model'])
+        }
+        editAdFlag = true;
+    }
 
     for (let o of opt) {
         if (!(options.includes(o))) {
             options.push(o);
         }
-        modelField.removeChild(o);
+        if (editAdFlag === false) {
+            modelField.removeChild(o);
+        } else {
+            if (!(notRemovableModels.includes(o.textContent))) {
+                modelField.removeChild(o);
+            }
+        }
     }
 
     return options;

@@ -7,6 +7,7 @@
     <title>Title</title>
     {% block page_styles %}
         <link rel="stylesheet" href="{% static 'css/profile-nav/profiles-data-form.css' %}">
+        <link rel="stylesheet" href="{% static 'css/delete-profile/delete-profile.css' %}">
     {% endblock %}
     {% block page_title %}
         <title>Delete Profile</title>
@@ -41,8 +42,10 @@
         <label for="">Confirmation Code:</label>
         {{ form.confirm_delete_code }}
         <button class="hero__form-btn">Delete Profile</button>
+        {% for message in messages %}
+            {{ message }}
+        {% endfor %}
     </form>
 {% endblock %}
 </body>
 </html>
-{#TODO: CREATE ADD I FAVOURITES#}

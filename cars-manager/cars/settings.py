@@ -26,7 +26,8 @@ SECRET_KEY = os.environ.get('SECRET_KEY')
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = os.environ.get('DEBUG')
-CSRF_TRUSTED_ORIGINS = ['http://cars-manager.tk', 'https://cars-manager.tk']
+CSRF_TRUSTED_ORIGINS = ['http://cars-manager.store', 'https://cars-manager.store']
+
 ALLOWED_HOSTS = os.environ.get('ALLOWED_HOSTS').split(' ')
 # Application definition
 INSTALLED_APPS = [
@@ -190,5 +191,5 @@ cloudinary.config(
 )
 DEFAULT_FILE_STORAGE = 'cloudinary_storage.storage.MediaCloudinaryStorage'
 
-CELERY_BROKER_URL = "redis://localhost:6379"
-CELERY_RESULT_BACKEND = "redis://localhost:6379"
+CELERY_BROKER_URL = "redis://redis:6379/0"
+CELERY_RESULT_BACKEND = "redis://redis:6379/0"

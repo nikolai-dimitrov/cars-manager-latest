@@ -92,5 +92,5 @@ class DeleteCodeView(View):
         delete_code = generate_delete_code()
         add_generated_delete_code_to_profile(delete_code, profile)
         send_mail_async.delay(email, delete_code)
-        messages.success(request, "Check email for delete confirmation code.")
+        messages.success(request, "Check email for delete confirmation code.", extra_tags='del')
         return redirect('Delete user')

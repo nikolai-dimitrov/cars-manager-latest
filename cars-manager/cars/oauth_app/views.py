@@ -97,7 +97,6 @@ class UserChangePassword(PasswordChangeView):
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
-        # context['profile_pk'] = self.request.user.pk
         context['profile'] = Profile.objects.get(pk=self.request.user.pk)
         return context
 

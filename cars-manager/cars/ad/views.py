@@ -66,22 +66,22 @@ class ShowAdsView(FormView, Paginator):
         'model',
         'car',
         'title',
-        'price',
         'year_of_manufacture',
         'body_type',
         'transmission',
         'city',
-        'fuel'
+        'fuel',
+        'min_price',
+        'max_price',
+        'min_year',
+        'max_year',
     ]
 
-    # def filter_ads(self, title, ads):
-    #     pass
     def get(self, request, *args, **kwargs):
         obj_list = self.get_context_data()
 
         paginator = Paginator(obj_list['cars'], 16)
         page_number = request.GET.get('page')
-        # url_test = request.GET.get('car')
         page_obj = paginator.get_page(page_number)
 
         context = {
@@ -96,8 +96,21 @@ class ShowAdsView(FormView, Paginator):
         filters = self.request.session.get('last_filters') or '{}'
         filters = json.loads(filters)
 
-        cars = Ad.objects.filter(**filters)
-        cars = cars.filter(profile__is_banned=False)
+        cars = Ad.objects.all()
+        ad_title = filters.get('title')
+        if len(filters) >= 4:
+            min_price = filters.pop('min_price')
+            max_price = filters.pop('max_price')
+            min_year = filters.pop('min_year')
+            max_year = filters.pop('max_year')
+            cars = cars.filter(price__gte=min_price, price__lte=max_price)
+            cars = cars.filter(year_of_manufacture__gte=min_year, year_of_manufacture__lte=max_year)
+
+        if ad_title is not None:
+            filters.pop('title')
+            cars = cars.filter(car__ad__title__icontains=ad_title)
+        cars = cars.filter(**filters)
+        cars = cars.filter(profile__is_banned=False).distinct('pk')
         self.extra_context = {'cars': cars}
         return super().get_context_data()
 
