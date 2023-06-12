@@ -164,7 +164,7 @@ SOCIALACCOUNT_PROVIDERS = {
         }
     }
 }
-SITE_ID = 4
+SITE_ID = 3
 
 AUTH_USER_MODEL = 'oauth_app.AppUser'
 LOGIN_REDIRECT_URL = reverse_lazy('index')
@@ -180,7 +180,6 @@ EMAIL_HOST_PASSWORD = os.environ.get('EMAIL_HOST_PASSWORD')
 EMAIL_PORT = os.environ.get('EMAIL_PORT')
 EMAIL_USE_TLS = True
 
-
 PASSWORD_RESET_TIMEOUT = 14400
 
 # Cloudinary
@@ -191,5 +190,5 @@ cloudinary.config(
 )
 DEFAULT_FILE_STORAGE = 'cloudinary_storage.storage.MediaCloudinaryStorage'
 
-CELERY_BROKER_URL = "redis://redis:6379/0"
-CELERY_RESULT_BACKEND = "redis://redis:6379/0"
+CELERY_BROKER_URL = os.environ.get(CELERY_BROKER_URL_ENV)
+CELERY_RESULT_BACKEND = os.environ.get(CELERY_RESULT_BACKEND_ENV)
