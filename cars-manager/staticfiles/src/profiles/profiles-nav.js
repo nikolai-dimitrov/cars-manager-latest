@@ -48,6 +48,7 @@ function addIndexCacheInSession(event) {
 
 function onClickIndexPage(event) {
     sessionStorage.setItem('navIndexClicked', 'true');
-}
+    sessionStorage.setItem('searching', `false`);
+}ii
 
 addIndexCacheInSession();
